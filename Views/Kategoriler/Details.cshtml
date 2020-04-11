@@ -1,0 +1,47 @@
+﻿@model MovieApp.Controllers.DetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kategori</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Kategori.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<table class="table">
+    @foreach (var item in Model.Filmler)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                <a asp-controller="FilmlerWepForm" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="FilmlerWepForm" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-controller="FilmlerWepForm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
